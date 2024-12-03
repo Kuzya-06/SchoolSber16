@@ -5,6 +5,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Lesson5/AnnotationReflectionProxy/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson6/UnitTesting/pom.xml" />
+        <option value="$PROJECT_DIR$/Task2/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson6/Task2/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson6/social-network/pom.xml" />
       </list>
     </option>
   </component>

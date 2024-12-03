@@ -10,7 +10,7 @@
 # Каталоги сборки
 /out/
 build/
-target/
+toClass/
 
 # Настройки IDE
 /.idea/
