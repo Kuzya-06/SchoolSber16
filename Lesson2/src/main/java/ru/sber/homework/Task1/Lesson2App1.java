@@ -11,7 +11,7 @@ public class Lesson2App1 {
         System.out.println("Дан массив: " + Arrays.toString(strings));
 
         Map<String, Integer> duplicatesString = DuplicatesStringUtils.findDuplicatesString(strings);
-        DuplicatesStringUtils.listUniqueStrings(duplicatesString);
+
         DuplicatesStringUtils.printInfoArray(duplicatesString);
     }
 
