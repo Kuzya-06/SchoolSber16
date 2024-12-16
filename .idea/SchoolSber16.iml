@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Lesson5/app/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson5/app/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson9 StreamAPI/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lesson10_MultiThreading/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Lesson5/app/target" />
     </content>
     <orderEntry type="inheritedJdk" />
