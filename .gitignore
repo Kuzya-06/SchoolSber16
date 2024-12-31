@@ -8,7 +8,7 @@
 /dataSources.local.xml
 
 # Каталоги сборки
-/out/
+/out/*
 build/
 toClass/
 

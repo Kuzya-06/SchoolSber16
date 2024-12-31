@@ -14,6 +14,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Lesson10_MultiThreading/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson11_MultiThreafing2/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson7/onLesson/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lesson13_MultiThreading3/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Lesson5/app/target" />
     </content>
     <orderEntry type="inheritedJdk" />
