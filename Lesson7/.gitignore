@@ -1,0 +1,32 @@
+# Default ignored files
+/.idea/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# Каталоги сборки
+/out/*
+build/
+target/
+toClass/
+
+# Настройки IDE
+/.idea/
+.idea/
+*.iml
+*.iws
+
+# Лог-файлы
+*.log
+
+# Файлы, генерируемые ОС
+.DS_Store
+Thumbs.db
+
+# Файлы зависимостей
+lib/
+.gradle/
+.mvn/
