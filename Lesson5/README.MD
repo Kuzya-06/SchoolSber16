@@ -85,12 +85,12 @@ import java.util.Map;
 }
 
 @MyAnnotation(value = "original")
-class MyClass {
+class org.example.define.MyClass {
 }
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        MyAnnotation annotation = MyClass.class.getAnnotation(MyAnnotation.class);
+        MyAnnotation annotation = org.example.define.MyClass.class.getAnnotation(MyAnnotation.class);
 
         Field field = annotation.getClass().getDeclaredField("memberValues");
         field.setAccessible(true);
