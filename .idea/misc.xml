@@ -13,11 +13,18 @@
         <option value="$PROJECT_DIR$/Lesson8/weatherAPI/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson7/encryptedClassLoader/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson7/encripted-classloader/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/plugin-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/browser/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/pluginManager/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/pluginManager/plugins/HugePlugin/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/pluginManager/browser/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/pluginManager/plugins/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/Lesson7/encripted-classloader/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson7/plugin-manager/pom.xml" />
       </set>
     </option>
   </component>
