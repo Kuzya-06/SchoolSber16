@@ -1,0 +1,5 @@
+links-file: "classpath:links-test.txt"
+download:
+  folder: downloads-test
+  threads: 3
+  speed-limit: 500

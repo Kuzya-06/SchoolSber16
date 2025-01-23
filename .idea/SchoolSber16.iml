@@ -17,7 +17,11 @@
       <sourceFolder url="file://$MODULE_DIR$/Lesson13_MultiThreading3/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson7/encryptedClassLoader/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson7/encryptedClassLoader/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/httpRequests" />
       <excludeFolder url="file://$MODULE_DIR$/Lesson5/app/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson7/encrypted-classloader/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson7/homework/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
