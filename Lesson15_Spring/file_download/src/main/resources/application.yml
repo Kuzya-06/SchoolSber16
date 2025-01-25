@@ -3,7 +3,7 @@ spring:
     name: file_download
 
 download:
-  folder: Lesson17_Spring/file_download/downloads    # Путь для сохранения файлов
+  folder: Lesson15_Spring/file_download/downloads    # Путь для сохранения файлов
   threads: 3               # Количество потоков для загрузки
   speed-limit: 500         # Ограничение скорости загрузки (кБ/сек)
 
