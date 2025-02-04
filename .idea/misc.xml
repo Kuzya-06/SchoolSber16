@@ -28,6 +28,7 @@
         <option value="$PROJECT_DIR$/Lesson17 ORM/recipeCRUD/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc2/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/atm-exception/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -39,7 +40,7 @@
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

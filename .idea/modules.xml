@@ -4,11 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SchoolSber16.iml" filepath="$PROJECT_DIR$/.idea/SchoolSber16.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson7/encryptedClassLoader/encryptedClassLoader.iml" filepath="$PROJECT_DIR$/Lesson7/encryptedClassLoader/encryptedClassLoader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Lesson17_Spring/file_download/file_download.iml" filepath="$PROJECT_DIR$/Lesson17_Spring/file_download/file_download.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson17 ORM/recipeCRUD/recipeCRUD.iml" filepath="$PROJECT_DIR$/Lesson17 ORM/recipeCRUD/recipeCRUD.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc/springmvc.iml" filepath="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc/springmvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson6/UnitTesting/unittesting.iml" filepath="$PROJECT_DIR$/Lesson6/UnitTesting/unittesting.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user-profile.iml" filepath="$PROJECT_DIR$/user-profile.iml" />
     </modules>
   </component>
 </project>
