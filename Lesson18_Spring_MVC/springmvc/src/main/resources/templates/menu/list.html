@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Меню</title>
+</head>
+
+<body>
+<h2>Меню Ресторана</h2>
+<!-- Кнопки для сортировки -->
+<form method="get" action="/menu">
+    <input type="hidden" name="page" th:value="${currentPage}">
+    <label>Сортировать по:
+        <select name="sortBy">
+            <option value="id" th:selected="${sortBy == 'id'}">ID</option>
+            <option value="name" th:selected="${sortBy == 'name'}">Название</option>
+            <option value="price" th:selected="${sortBy == 'price'}">Цена</option>
+            <option value="createDate" th:selected="${sortBy == 'createDate'}">Дата создания</option>
+        </select>
+    </label>
+    <label>Направление:
+        <select name="direction">
+            <option value="asc" th:selected="${direction == 'asc'}">По возрастанию</option>
+            <option value="desc" th:selected="${direction == 'desc'}">По убыванию</option>
+        </select>
+    </label>
+    <button type="submit">Применить</button>
+</form>
+<br>
+<table th:border="1" th:bgcolor="FFFF99">
+    <tr th:align="center">
+        <th th:width="50">ID</th>
+        <th th:width="200">Название</th>
+        <th th:width="90">Цена</th>
+        <th th:width="400">Описание</th>
+        <th colspan="2" th:width="250">Действия</th>
+    </tr>
+    <tr th:each="item : ${menuItems}">
+        <td th:height="35" th:align="center" th:text="${item.id}"></td>
+        <td th:height="35" th:text="${item.name}"></td>
+        <td th:height="35" th:align="center" th:text="${item.price}"></td>
+        <td th:height="35" th:text="${item.description}"></td>
+        <td th:align="center">
+            <a th:href="@{/menu/{id}/edit(id=${item.id}, page=${currentPage}, sortBy=${sortBy}, direction=${direction})}">Редактировать</a>
+        </td>
+        <td th:align="center">
+            <a th:href="@{/menu/{id}/delete(id=${item.id}, page=${currentPage}, sortBy=${sortBy}, direction=${direction})}">Удалить</a>
+        </td>
+    </tr>
+</table>
+</br>
+<form>
+    <a th:href="@{/menu/new(page=${currentPage}, sortBy=${sortBy}, direction=${direction})}">
+        <input type="button" name="addItem" value="Добавить" th:placeholder="Добавить"/>
+    </a>
+</form>
+</br>
+
+<!-- Навигация по страницам -->
+<div>
+    <a th:if="${currentPage > 0}"
+       th:href="@{/menu(page=${currentPage - 1}, sortBy=${sortBy}, direction=${direction})}">← Назад</a>
+
+    <span th:text="'  Страница ' + (${currentPage} + 1) + ' из ' + ${totalPages}+'  '"></span>
+
+    <a th:if="${currentPage + 1 < totalPages}"
+       th:href="@{/menu(page=${currentPage + 1}, sortBy=${sortBy}, direction=${direction})}">Вперед →</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование</title>
+</head>
+<body>
+<h2>Добавить / Редактировать</h2>
+
+<form th:action="@{/menu}" th:object="${menuItem}" method="post">
+    <input type="hidden" th:if="*{id}" th:field="*{id}">
+
+    <label>Название: <input type="text" th:field="*{name}"></label><br>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+    <br>
+    <label>Цена: <input type="number" step="1" th:field="*{price}"></label><br>
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red;"></span>
+    <br>
+    <label>Описание: <input type="text" th:field="*{description}"></label><br>
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color: red;"></span>
+    <br>
+
+    <!-- Скрытые поля для сохранения параметров сортировки и страницы -->
+    <input type="hidden" name="page" th:value="${page}">
+    <input type="hidden" name="sortBy" th:value="${sortBy}">
+    <input type="hidden" name="direction" th:value="${direction}">
+    <button type="submit">Сохранить</button>
+</form>
+<br>
+<a th:href="@{/menu(page=${page}, sortBy=${sortBy}, direction=${direction})}">Назад к списку</a>
+</body>
+</html>

@@ -17,11 +17,16 @@
       <sourceFolder url="file://$MODULE_DIR$/Lesson13_MultiThreading3/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson7/encryptedClassLoader/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Lesson7/encryptedClassLoader/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Lesson14_BD_JDBC/cashDB/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lesson18_Spring_MVC/springmvc2/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/httpRequests" />
       <excludeFolder url="file://$MODULE_DIR$/Lesson5/app/target" />
       <excludeFolder url="file://$MODULE_DIR$/Lesson7/encrypted-classloader/target" />
       <excludeFolder url="file://$MODULE_DIR$/Lesson7/homework/target" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/inspectionProfiles" />
+      <excludeFolder url="file://$MODULE_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/.mvn" />
+      <excludeFolder url="file://$MODULE_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

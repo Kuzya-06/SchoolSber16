@@ -21,10 +21,19 @@
         <option value="$PROJECT_DIR$/Lesson7/pluginManager/plugins/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson16_BD_JDBC/cashDB/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson17_Spring/file_download/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson_18_MVC/menu_restaurant/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson15_Spring/file_download/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson14_BD_JDBC/cashDB/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson17 ORM/recipeCRUD/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc2/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc2/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson7/encripted-classloader/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson7/plugin-manager/pom.xml" />
       </set>

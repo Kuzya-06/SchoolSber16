@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  app:
+    container_name: menu
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_HOST: host.docker.internal
+    ports:
+      - "8080:8080"
+
+  postgres:
+    container_name: postgres_menu
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_SHEMA: public
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./src/main/resources/db/create.sql:/docker-entrypoint-initdb.d/create.sql
+      - ./src/main/resources/db/insert.sql:/docker-entrypoint-initdb.d/insert.sql
+

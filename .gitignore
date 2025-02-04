@@ -12,6 +12,7 @@
 /out/*
 build/
 toClass/
+/target/*
 
 # Настройки IDE
 /.idea/
@@ -19,14 +20,22 @@ toClass/
 *.iml
 *.iws
 
-# Лог-файлы
+# Логи
 *.log
 
 # Файлы, генерируемые ОС
 .DS_Store
 Thumbs.db
+*.user
+*.sublime-project
+*.sublime-workspace
 
 # Файлы зависимостей
 lib/
 .gradle/
 .mvn/
+node_modules/
+vendor/
+
+# Конфиденциальные данные
+*.env
