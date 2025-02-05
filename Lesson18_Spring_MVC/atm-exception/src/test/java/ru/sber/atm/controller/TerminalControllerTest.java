@@ -6,8 +6,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.sber.atm.exception.AccountLockedException;
+import ru.sber.atm.exception.TerminalException;
 import ru.sber.atm.model.request.AmountRequest;
 import ru.sber.atm.model.request.PinRequest;
 import ru.sber.atm.service.TerminalService;
@@ -34,14 +37,13 @@ class TerminalControllerTest {
 
     @Test
     void validatePin_CorrectPin_ReturnsAccessAllowed() throws Exception {
-        PinRequest request = new PinRequest();
-        request.setPin("1234");
+        PinRequest pinRequest = new PinRequest("123456", "1234");
 
         when(terminalService.validatePin(any())).thenReturn("Доступ разрешен");
 
         mockMvc.perform(post("/api/validate-pin")
                         .contentType(APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
+                        .content(objectMapper.writeValueAsString(pinRequest)))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Доступ разрешен"));
 
@@ -49,45 +51,100 @@ class TerminalControllerTest {
     }
 
     @Test
-    void getBalance_ReturnsBalance() throws Exception {
-        when(terminalService.getBalance()).thenReturn(5000);
+    void validatePin_IncorrectPin() throws Exception {
+        PinRequest pinRequest = new PinRequest("123456", "0000");
 
-        mockMvc.perform(get("/api/balance"))
+        when(terminalService.validatePin(pinRequest))
+                .thenThrow(new AccountLockedException("Неверный PIN. Осталось попыток: 2"));
+
+        mockMvc.perform(post("/api/validate-pin")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(pinRequest)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Неверный PIN. Осталось попыток: 2"));
+    }
+
+    @Test
+    void getBalance_ReturnsBalance() throws Exception {
+        when(terminalService.getBalance(anyString())).thenReturn(5000L);
+
+        mockMvc.perform(get("/api/balance/123456"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("5000"));
 
-        verify(terminalService, times(1)).getBalance();
+        verify(terminalService, times(1)).getBalance(anyString());
     }
 
     @Test
     void deposit_ValidAmount_ReturnsSuccessMessage() throws Exception {
-        AmountRequest request = new AmountRequest();
-        request.setAmount(1000);
+        AmountRequest request = new AmountRequest("123456", 1000);
 
-        when(terminalService.deposit(any())).thenReturn("Пополнено успешно. Новый баланс: 6000");
+        when(terminalService.deposit(any())).thenReturn("Операция выполнена");
 
         mockMvc.perform(post("/api/deposit")
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Пополнено успешно. Новый баланс: 6000"));
+                .andExpect(content().string("Операция выполнена"));
 
         verify(terminalService, times(1)).deposit(any());
     }
 
     @Test
-    void withdraw_ValidAmount_ReturnsSuccessMessage() throws Exception {
-        AmountRequest request = new AmountRequest();
-        request.setAmount(1000);
+    void deposit_NotMultipleOf100() throws Exception {
+        AmountRequest depositRequest = new AmountRequest("123456", 150);
 
-        when(terminalService.withdraw(any())).thenReturn("Снятие успешно. Новый баланс: 4000");
+        when(terminalService.deposit(depositRequest))
+                .thenThrow(new TerminalException("Сумма должна быть кратна 100."));
+
+        mockMvc.perform(post("/api/deposit")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(depositRequest)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Сумма должна быть кратна 100."));
+    }
+
+    @Test
+    void withdraw_ValidAmount_ReturnsSuccessMessage() throws Exception {
+        AmountRequest request = new AmountRequest("123456", 1000);
+
+        when(terminalService.withdraw(any())).thenReturn("Операция выполнена");
 
         mockMvc.perform(post("/api/withdraw")
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Снятие успешно. Новый баланс: 4000"));
+                .andExpect(content().string("Операция выполнена"));
 
         verify(terminalService, times(1)).withdraw(any());
     }
+
+    @Test
+    void withdraw_NotMultipleOf100() throws Exception {
+        AmountRequest withdrawRequest = new AmountRequest("123456", 350);
+
+        when(terminalService.withdraw(withdrawRequest))
+                .thenThrow(new TerminalException("Сумма должна быть кратна 100."));
+
+        mockMvc.perform(post("/api/withdraw")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(withdrawRequest)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Сумма должна быть кратна 100."));
+    }
+
+    @Test
+    void withdraw_InsufficientFunds() throws Exception {
+        AmountRequest withdrawRequest = new AmountRequest("123456", 10000);
+
+        when(terminalService.withdraw(withdrawRequest))
+                .thenThrow(new AccountLockedException("Недостаточно средств. Баланс: 5000"));
+
+        mockMvc.perform(post("/api/withdraw")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(withdrawRequest)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Недостаточно средств. Баланс: 5000"));
+    }
+
 }

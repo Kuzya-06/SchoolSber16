@@ -8,14 +8,14 @@ import ru.sber.atm.exception.TerminalException;
 @RestControllerAdvice
 public class TerminalExceptionHandler {
 
-    @ExceptionHandler(TerminalException.class)
-    public String getTerminalException(final TerminalException e) {
+    @ExceptionHandler({TerminalException.class, AccountLockedException.class})
+    public String getTerminalException(final RuntimeException e) {
         return e.getMessage();
     }
 
-    @ExceptionHandler(AccountLockedException.class)
-    public String getAccountLockedException(final AccountLockedException e) {
-        return e.getMessage();
-    }
+//    @ExceptionHandler(AccountLockedException.class)
+//    public String getAccountLockedException(final AccountLockedException e) {
+//        return e.getMessage();
+//    }
 
 }

@@ -1,6 +1,7 @@
 package ru.sber.atm.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -8,9 +9,10 @@ import ru.sber.atm.model.request.AmountRequest;
 import ru.sber.atm.model.request.PinRequest;
 import ru.sber.atm.service.TerminalService;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5174")
 @RestController
 @RequestMapping("/api")
+@Tag(name = "ATM. Основные команды для работы с ATM")
 public class TerminalController {
 
     private static final Logger log = LoggerFactory.getLogger(TerminalController.class);
@@ -28,10 +30,12 @@ public class TerminalController {
     }
 
     @Operation(summary = "Проверка баланса", description = "Проверка баланса")
-    @GetMapping("/balance")
-    public int getBalance() {
-        log.debug("Get balance");
-        return terminalService.getBalance();
+    @GetMapping("/balance/{card}")
+    public long getBalance(@PathVariable String card) {
+        log.debug("Begin method Controller.getBalance() card = {}", card);
+        long balance = terminalService.getBalance(card);
+        log.debug("Get for card = {} balance = {}", card, balance);
+        return balance;
     }
 
     @Operation(summary = "Депозит", description = "Положить определённую сумму на счёт")

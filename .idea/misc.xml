@@ -29,6 +29,7 @@
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc2/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/demo/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/atm-exception/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/servlet-api/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

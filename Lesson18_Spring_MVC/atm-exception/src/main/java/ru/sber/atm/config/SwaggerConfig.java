@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(info = @Info(
         title = "ATM Terminal", version = "1.0",
         description = "ATM проверочный API", contact = @Contact(
-        name = "mi.kuznecov@mail.ru", email = "rostov@mail.ru"
+        name = "Michail K", email = "t9034049980@gmail.com"
 ), license = @License(name = "MIT Licence",
         url = "https://opensource.org/licenses/mit-license.php")))
 public class SwaggerConfig {

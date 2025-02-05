@@ -1,88 +1,126 @@
 package ru.sber.atm.service;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.sber.atm.exception.AccountLockedException;
 import ru.sber.atm.exception.TerminalException;
+import ru.sber.atm.model.Terminal;
 import ru.sber.atm.model.request.AmountRequest;
 import ru.sber.atm.model.request.PinRequest;
+import ru.sber.atm.repository.TerminalRepository;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
+//@SessionScope
 @Slf4j
 @Service
 @Data
+@RequiredArgsConstructor
 public class TerminalService {
 
-    private static final String PIN_CODE = "1234";
-    private int balance = 5000;
-    private int attempts = 0;
-    private LocalDateTime lockEndTime = null;
+    private final TerminalRepository terminalRepository;
+
+    private final Map<String, Integer> attemptsMap = new HashMap<>();
+    private final Map<String, LocalDateTime> lockEndTimeMap = new HashMap<>();
 
 
     public String validatePin(PinRequest request) {
+        String card = request.getCard();
         String pin = request.getPin();
-        log.info("Validating pin: {}", pin);
-        if (isLocked()) {
-            log.error("Blocked. Try it later.");
+        log.info("Validating card: {}, pin: {}", card, pin);
+
+        if (isLocked(card)) {
+            log.error("Card {} is blocked. Try later.", card);
             throw new AccountLockedException("Заблокировано. Попробуйте позже.");
         }
+        Optional<Terminal> terminal = terminalRepository.findByCard(card);
+        if (terminal.isEmpty()) {
+            log.error("Card {} not found.", card);
+            throw new AccountLockedException("Такой карты нет. Попробуйте позже.");
+        }
 
-        if (PIN_CODE.equals(pin)) {
-            attempts = 0;
-            log.info("Access is allowed");
+        if (pin.equals(terminal.get().getPin())) {
+            attemptsMap.remove(card);
+            log.info("Access granted for card {}", card);
             return "Доступ разрешен";
         } else {
-            attempts++;
+            int attempts = attemptsMap.getOrDefault(card, 0) + 1;
+            attemptsMap.put(card, attempts);
+
             if (attempts >= 3) {
-                lockEndTime = LocalDateTime.now().plusSeconds(10);
-                attempts = 0;
-                log.debug("Blocked for 10 seconds");
-                throw new AccountLockedException("Заблокировано на 10 секунд");
+                lockEndTimeMap.put(card, LocalDateTime.now().plusSeconds(10));
+                attemptsMap.remove(card);
+                log.warn("Card {} blocked for 10 seconds", card);
+                throw new AccountLockedException("Карта заблокирована на 10 секунд.");
             }
-            log.debug("Inappropriate PIN. There are attempts left: {}",(3 - attempts));
+
+            log.warn("Incorrect PIN for card {}. Attempts left: {}", card, (3 - attempts));
             throw new AccountLockedException("Неверный PIN. Осталось попыток: " + (3 - attempts));
+
         }
     }
 
 
-    public int getBalance() {
-        return balance;
+    @Transactional(readOnly = true)
+    public long getBalance(String card) {
+        Terminal terminal = getTerminalByCard(card);
+        log.info("Fetching balance for card {}: {}", card, terminal.getBalance());
+        return terminal.getBalance();
     }
 
-
+    @Transactional
     public String deposit(AmountRequest request) {
+        Terminal terminal = getTerminalByCard(request.getCard());
         int amount = request.getAmount();
-        log.debug("Deposit request: {}", amount);
+
         if (amount % 100 != 0) {
-            log.debug("Deposit amount is not multiple of size 100");
+            log.debug("Сумма должна быть кратна 100.");
             throw new TerminalException("Сумма должна быть кратна 100.");
         }
-        balance += amount;
-        log.info("Balance: {}", balance);
-        return "Пополнено успешно. Новый баланс: " + balance;
+
+        long newBalance = terminal.getBalance() + amount;
+        terminal.setBalance(newBalance);
+        terminalRepository.save(terminal);
+        log.info("Deposit: {} RUB to card {}. New balance: {}", amount, request.getCard(), newBalance);
+
+        return "Операция выполнена!";
     }
 
-
+    @Transactional
     public String withdraw(AmountRequest request) {
+        Terminal terminal = getTerminalByCard(request.getCard());
         int amount = request.getAmount();
-        log.debug("Withdraw request: {}", amount);
+
         if (amount % 100 != 0) {
             log.debug("Withdraw amount is not multiple of size 100");
             throw new TerminalException("Сумма должна быть кратна 100.");
         }
-        if (amount > balance) {
+
+        if (amount > terminal.getBalance()) {
             log.debug("Withdraw amount is greater than balance");
-            throw new TerminalException("Недостаточно средств. Баланс: " + balance);
+            throw new TerminalException("Недостаточно средств. Баланс: " + terminal.getBalance());
         }
-        balance -= amount;
-        log.info("Balance: {}", balance);
-        return "Снятие успешно. Новый баланс: " + balance;
+
+        long newBalance = terminal.getBalance() - amount;
+        terminal.setBalance(newBalance);
+        terminalRepository.save(terminal);
+        log.info("Withdraw: {} RUB from card {}. New balance: {}", amount, request.getCard(), newBalance);
+
+        return "Операция выполнена!";
     }
 
-    private boolean isLocked() {
-        return lockEndTime != null && LocalDateTime.now().isBefore(lockEndTime);
+    private Terminal getTerminalByCard(String card) {
+        log.debug("getTerminalByCard(String card) = {}", card);
+        return terminalRepository.findByCard(card).orElseThrow(() -> new TerminalException("Карта не найдена."));
     }
 
+    private boolean isLocked(String card) {
+        return lockEndTimeMap.containsKey(card) && LocalDateTime.now().isBefore(lockEndTimeMap.get(card));
+    }
 }

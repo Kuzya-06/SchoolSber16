@@ -2,18 +2,24 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const PinScreen = ({ onAuthSuccess }) => {
+export const PinScreen = ({ onAuthSuccess }) => {
+    const [card, setCard] = useState("");
     const [pin, setPin] = useState("");
     const [errorMessage, setErrorMessage] = useState(""); // Сохраняем сообщение об ошибке
 
     const handlePinSubmit = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/api/validate-pin", { pin });
+            const res = await axios.post("http://localhost:8080/api/validate-pin", { card, pin }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            console.log(res.data)
 
             if (res.data === "Доступ разрешен") {
                 toast.success(res.data);
                 setErrorMessage(""); // Сбрасываем ошибку при успешном входе
-                onAuthSuccess();
+                onAuthSuccess(card);
             } else {
                 setErrorMessage(res.data); // Показываем сообщение ошибки
                 toast.error(res.data);
@@ -26,7 +32,16 @@ const PinScreen = ({ onAuthSuccess }) => {
     };
 
     return (
+        <div style={styles.box}>
         <div style={styles.container}>
+            <h2 style={styles.title}>Введите Номер карты. 6 цифр</h2>
+            <input
+                type="text"
+                style={styles.input}
+                maxLength={6}
+                value={card}
+                onChange={(e) => setCard(e.target.value)}
+            />
             <h2 style={styles.title}>Введите PIN</h2>
             <input
                 type="password"
@@ -40,14 +55,22 @@ const PinScreen = ({ onAuthSuccess }) => {
             </button>
             {errorMessage && <p style={styles.error}>{errorMessage}</p>} {/* Вывод ошибки */}
         </div>
+        </div>
     );
 };
 
 const styles = {
+box: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh",
+    minWidth: "100vw"
+},
     container: {
-        width: "300px",
-        padding: "20px",
-        margin: "100px auto",
+        width: "450px",
+        padding: "10px",
+        margin: "50px auto",
         textAlign: "center",
         backgroundColor: "#fff",
         borderRadius: "8px",
@@ -56,22 +79,24 @@ const styles = {
     title: {
         fontSize: "20px",
         fontWeight: "bold",
-        marginBottom: "15px"
+        marginBottom: "15px",
+        color: "#007bff"
     },
     input: {
-        width: "100%",
+        width: "90%",
         padding: "10px",
         fontSize: "18px",
         textAlign: "center",
         border: "1px solid #ccc",
-        borderRadius: "4px"
+        borderRadius: "4px",
+        color: "#00f"
     },
     button: {
         width: "100%",
         padding: "10px",
         marginTop: "15px",
         backgroundColor: "#007bff",
-        color: "#fff",
+        color: "#00f",
         fontSize: "16px",
         border: "none",
         borderRadius: "4px",
@@ -84,4 +109,3 @@ const styles = {
     }
 };
 
-export default PinScreen;
