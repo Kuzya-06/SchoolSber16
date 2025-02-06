@@ -87,7 +87,7 @@ public class MenuController {
                                @RequestParam(defaultValue = "0") int page,
                                @RequestParam(defaultValue = "name") String sortBy,
                                @RequestParam(defaultValue = "asc") String direction) {
-        model.addAttribute("menuItem", menuItemService.getById(id).orElseThrow());
+        model.addAttribute("menuItem", menuItemService.getById(id));
         model.addAttribute("page", page);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("direction", direction);

@@ -3,6 +3,8 @@ package ru.sber.mvc.service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MenuItemService {
 
+    private static final Logger log = LoggerFactory.getLogger(MenuItemService.class);
     private final MenuItemRepository menuItemRepository;
     private final MenuItemMapper mapper;
 
@@ -44,8 +47,13 @@ public class MenuItemService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<MenuItem> getById(Long id) {
-        return menuItemRepository.findById(id);
+    public MenuItemDto getById(Long id) {
+        return menuItemRepository.findById(id)
+                .map(mapper::toDto)
+                .orElseThrow(() -> {
+                    log.debug("Продукт с id {} не найдено", id);
+                    return new EntityNotFoundException("Продукт с id " + id + " " + "не найден");
+                });
     }
 
     @Transactional()
