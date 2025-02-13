@@ -32,6 +32,9 @@
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/servlet-api/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson18_Spring_MVC/api-servlet/pom.xml" />
         <option value="$PROJECT_DIR$/Lesson20_WireMock/wiremocktest/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson21/demo-selenium/pom.xml" />
+        <option value="$PROJECT_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/pom.xml" />
+        <option value="$PROJECT_DIR$/Lesson12_Pattern/recipe-pattern-command/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
