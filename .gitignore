@@ -38,5 +38,7 @@ lib/
 node_modules/
 vendor/
 
+/.allure/
+
 # Конфиденциальные данные
 *.env

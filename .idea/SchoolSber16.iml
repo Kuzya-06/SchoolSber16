@@ -27,6 +27,22 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea/inspectionProfiles" />
       <excludeFolder url="file://$MODULE_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/.mvn" />
       <excludeFolder url="file://$MODULE_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/target" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/codeStyles" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.20.1" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.20.1/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.20.1/plugins/jira-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.20.1/plugins/xctest-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.20.1/plugins/xray-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.26.0" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.26.0/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.26.0/plugins/jira-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.26.0/plugins/xctest-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.26.0/plugins/xray-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.8.1/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.8.1/plugins/jira-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.8.1/plugins/xctest-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.allure/allure-2.8.1/plugins/xray-plugin/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/Lesson23_Allure/allure/.mvn" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

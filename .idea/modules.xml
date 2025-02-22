@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SchoolSber16.iml" filepath="$PROJECT_DIR$/.idea/SchoolSber16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/allure2.iml" filepath="$PROJECT_DIR$/allure2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson18_Spring_MVC/api-servlet/api-servlet.iml" filepath="$PROJECT_DIR$/Lesson18_Spring_MVC/api-servlet/api-servlet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson18_Spring_MVC/atm-exception/atm.iml" filepath="$PROJECT_DIR$/Lesson18_Spring_MVC/atm-exception/atm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson21/demo-selenium/demo-selenium.iml" filepath="$PROJECT_DIR$/Lesson21/demo-selenium/demo-selenium.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson7/encryptedClassLoader/encryptedClassLoader.iml" filepath="$PROJECT_DIR$/Lesson7/encryptedClassLoader/encryptedClassLoader.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson15_Spring/file_download/file_download.iml" filepath="$PROJECT_DIR$/Lesson15_Spring/file_download/file_download.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/recipe.iml" filepath="$PROJECT_DIR$/Lessons16_Spring_JDBC_Transactions/recipe/recipe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson12_Pattern/recipe-pattern-command/recipe-pattern-command.iml" filepath="$PROJECT_DIR$/Lesson12_Pattern/recipe-pattern-command/recipe-pattern-command.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson17 ORM/recipeCRUD/recipeCRUD.iml" filepath="$PROJECT_DIR$/Lesson17 ORM/recipeCRUD/recipeCRUD.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc/springmvc.iml" filepath="$PROJECT_DIR$/Lesson18_Spring_MVC/springmvc/springmvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lesson6/UnitTesting/unittesting.iml" filepath="$PROJECT_DIR$/Lesson6/UnitTesting/unittesting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lesson20_WireMock/wiremocktest/wiremock.iml" filepath="$PROJECT_DIR$/Lesson20_WireMock/wiremocktest/wiremock.iml" />
     </modules>
   </component>
 </project>
